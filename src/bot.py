@@ -19,6 +19,7 @@ async def on_ready():
 
 # prefix commands
 
+
 @bot.command(name='hello')
 async def hello_command(ctx):
     await hello(ctx)
@@ -29,9 +30,14 @@ async def ping_command(ctx):
     await ping(ctx, bot)
 
 
-@bot.command(name='생일')
+@bot.command(name='생일', aliases=['birth', 'b'])
 async def birth_command(ctx):
     await birth(ctx)
+
+
+@bot.command(name='도움', aliases=['도움말', 'h'])
+async def help_command(ctx):
+    await help(ctx)
 
 # slash commands
 
@@ -49,6 +55,11 @@ async def ping_slash_command(ctx):
 @bot.tree.command(name='생일', description='내 생일이 궁금해?')
 async def birth_slash_command(ctx):
     await birth(ctx)
+
+
+@bot.tree.command(name='도움', description='도움말!')
+async def help_slash_command(ctx):
+    await help(ctx)
 
 # @bot.tree.command(name='voice', description='on Develop')
 # async def join_command(ctx):
