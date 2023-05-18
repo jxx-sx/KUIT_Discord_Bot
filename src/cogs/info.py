@@ -30,7 +30,7 @@ class info(commands.Cog):
         await send_message(ctx, message)
 
     async def help(self, ctx):
-        message = '빗금(/)를 입력해 명령어를 고르거나 느낌표(!) 뒤에 아래에 나오는 명령어를 붙여서 써주세요\n```[ hello ]: Hello KUIT!\n[ 핑, ping, p]: 봇 상태 확인\n[ birth, b, 생일 ]: 쿠잇 기념일\n[ h, 도움, 도움말 ]: 도움말```'
+        message = '빗금(/)를 입력해 명령어를 고르거나 느낌표(!) 뒤에 아래에 나오는 명령어를 붙여서 써주세요\n```[ hello ]: Hello KUIT!\n[ 핑, ping, p]: 봇 상태 확인\n[ birth, b, 생일 ]: 쿠잇 기념일\n[ h, 도움, 도움말 ]: 도움말```\n\n또... 여러 이스터에그가 있습니다(소근)'
         await send_message(ctx, message)
 
     @commands.command(name='hello')
@@ -64,6 +64,31 @@ class info(commands.Cog):
     @app_commands.command(name='도움', description='도움말!')
     async def help_slash_command(self, ctx):
         await self.help(ctx)
+
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        """
+        message.author : 메시지를 보낸 사람
+        message.guild : 메시지를 보낸 서버
+        message.channel : 메시지를 보낸 채널
+        """
+        if message.author.bot:  # 봇이 보낸 메시지이면 반응하지 않게 합니다
+            return
+
+        if message.content == "@안녕":
+            print(message.channel)
+            await message.channel.send(message.author.name + "님 안녕하세요!")
+
+        if message.content == "집에 보내줘...":
+            print(message.channel)
+            await message.channel.send("어딜가... 공부해야지...")
+
+        if message.content == 'T':
+            file = discord.File("./assets/T.jpg")
+            await message.channel.send(file=file)
+
+        if message.channel.category.name == 'Notice':
+            await message.add_reaction("✅")
 
     # @app_commands.command(name='voice', description='on Develop')
     # async def join_command(self, ctx):

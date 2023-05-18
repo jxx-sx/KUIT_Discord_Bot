@@ -25,4 +25,3 @@ class Client(commands.Bot):
 client = Client()
 
 client.run(token)
-    
