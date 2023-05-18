@@ -66,6 +66,11 @@ class info(commands.Cog):
         await self.help(ctx)
 
     @commands.Cog.listener()
+    async def auto_check(self, message):
+        if message.channel.category.name == 'Notice':
+            await message.add_reaction("✅")
+
+    @commands.Cog.listener()
     async def on_message(self, message):
         """
         message.author : 메시지를 보낸 사람
@@ -86,9 +91,6 @@ class info(commands.Cog):
         if message.content == 'T':
             file = discord.File("./assets/T.jpg")
             await message.channel.send(file=file)
-
-        if message.channel.category.name == 'Notice':
-            await message.add_reaction("✅")
 
     # @app_commands.command(name='voice', description='on Develop')
     # async def join_command(self, ctx):
