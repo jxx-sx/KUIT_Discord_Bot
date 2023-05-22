@@ -66,31 +66,15 @@ class info(commands.Cog):
         await self.help(ctx)
 
     @commands.Cog.listener()
-    async def auto_check(self, message):
-        if message.channel.category.name == 'Notice':
-            await message.add_reaction("✅")
-
-    @commands.Cog.listener()
     async def on_message(self, message):
-        """
-        message.author : 메시지를 보낸 사람
-        message.guild : 메시지를 보낸 서버
-        message.channel : 메시지를 보낸 채널
-        """
-        if message.author.bot:  # 봇이 보낸 메시지이면 반응하지 않게 합니다
+        if message.author.bot:
             return
 
-        if message.content == "@안녕":
-            print(message.channel)
+        if message.content == "큇봇 안녕":
             await message.channel.send(message.author.name + "님 안녕하세요!")
 
-        if message.content == "집에 보내줘...":
-            print(message.channel)
-            await message.channel.send("어딜가... 공부해야지...")
-
-        if message.content == 'T':
-            file = discord.File("./assets/T.jpg")
-            await message.channel.send(file=file)
+        if message.channel.category.name == 'Notice':
+            await message.add_reaction("✅")
 
     # @app_commands.command(name='voice', description='on Develop')
     # async def join_command(self, ctx):

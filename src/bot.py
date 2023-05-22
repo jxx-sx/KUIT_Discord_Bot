@@ -17,7 +17,7 @@ class Client(commands.Bot):
             print(e)
 
     async def setup_hook(self):
-        ext_list = ['cogs.info']
+        ext_list = ['cogs.info', 'cogs.easteregg']
         for ext in ext_list:
             await self.load_extension(ext)
 
